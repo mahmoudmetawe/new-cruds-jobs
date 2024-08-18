@@ -1,0 +1,42 @@
+
+.container{
+    display: flex;
+    justify-content: center;
+    background-color: skyblue;
+    overflow: hidden;
+    overflow-wrap:anywhere;
+    
+}
+
+div #submit , .btnsearch , .delete{
+    width: 100%;
+    height: 35px;
+    background-color: blue;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 20px;
+    margin: 10px 0 10px 0;
+}
+.btndivsearch{
+    display: flex;
+    justify-content: space-between;
+}
+
+div #submit:hover , .btnsearch:hover , .delete:hover , .btn1:hover{
+scale: 1.02;
+transition: 1s;
+letter-spacing: 2px;
+
+}
+
+.btn1{
+    border: none;
+    border-radius: 10px;
+    background-color: blue;
+    color: white;
+    height: 25px;
+}
+
+
+
