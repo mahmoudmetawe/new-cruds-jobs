@@ -59,16 +59,15 @@
                 </div>
     
                 <div class="mt-3">
-                    <input type="search" placeholder="search"
-                        style="width: 99%; border: none; border-radius: 10px; height: 30px;">
+                    <input onkeyup="searchon(this.value)" type="search" id="searcher" placeholder="search">
                 </div>
                 <div class="mt-3 btndivsearch">
-                    <button class="btnsearch" style="width: 40%;">search by name</button>
-                    <button class="btnsearch" style="width: 40%;">search by jobs</button>
+                    <button onclick="searchby(this.id)" class="btnsearch" id="byname" style="width: 40%;">search by name</button>
+                    <button onclick="searchby(this.id)" class="btnsearch" id="byjobs" style="width: 40%;">search by jobs</button>
                 </div>
     
                 <div>
-                    <button class="delete" id="deleteAll" onclick="deleteall()">delete all (<span id="numberofdel">0</span>)</button>
+                    <button class="delete" id="deleteAll" onclick="deleteall()">delete all  (<span id="numberofdel">0</span>)</button>
                 </div>
             </form>
             <div class="tablecruds -12">

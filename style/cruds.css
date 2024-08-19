@@ -23,7 +23,7 @@ div #submit , .btnsearch , .delete{
     justify-content: space-between;
 }
 
-div #submit:hover , .btnsearch:hover , .delete:hover , .btn1:hover{
+div #submit:hover , .btnsearch:hover , .delete:hover , .btn1:hover {
 scale: 1.02;
 transition: 1s;
 letter-spacing: 2px;
@@ -38,5 +38,15 @@ letter-spacing: 2px;
     height: 25px;
 }
 
+#searcher{
+    width: 99%;
+    border-radius: 10px;
+    border: none;
+    height: 30px;
 
+}
+#searcher:focus {
+    scale: 1.02;
+    transition: 1s;
+}
 
