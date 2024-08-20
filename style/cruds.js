@@ -13,6 +13,8 @@ let gender = document.getElementById("gender");
 let from = document.getElementById("from");
 let to = document.getElementById("to");
 let submit = document.getElementById("submit");
+let mood = "creat";
+let temp;
 
 // creat submit collection data of jobs......................................................................
 
@@ -25,15 +27,22 @@ if (localStorage.jobsavail != null) {
 
 submit.onclick = function () {
   let human = {
-    fn: fn.value,
-    ln: ln.value,
-    job: job.value,
+    fn: fn.value.toLowerCase(),
+    ln: ln.value.toLowerCase(),
+    job: job.value.toLowerCase(),
     age: age.value,
     gender: gender.value,
     from: from.value,
     to: to.value,
   };
-  humanJob.push(human);
+  if( mood === "creat"){
+    humanJob.push(human);
+  }else{
+    humanJob[temp]=human;
+    mood = "creat";
+    submit.innerHTML = "create";
+  }
+  
   //save in local storage.....................................
   localStorage.setItem("jobsavail", JSON.stringify(humanJob));
   clearData();
@@ -65,7 +74,7 @@ function showdata() {
                             <td>${humanJob[i].gender}</td>
                             <td>${humanJob[i].from}</td>
                             <td>${humanJob[i].to}</td>
-                            <td><button class="btn1" >update</button></td>
+                            <td><button class="btn1" onclick="updateData(${i})">update</button></td>
                             <td><button class="btn1" onclick="deleteData(${i})">delete</button></td>
     
                         </tr>
@@ -91,6 +100,19 @@ let numberofdel = document.getElementById("numberofdel");
 numberofdel.innerHTML = humanJob.length;
 
 //update.....................................................................................................
+
+function updateData(i) {
+  fn.value = humanJob[i].fn;
+  ln.value = humanJob[i].ln;
+  job.value = humanJob[i].job;
+  age.value = humanJob[i].age;
+  gender.value = humanJob[i].gender;
+  from.value = humanJob[i].from;
+  to.value = humanJob[i].to;
+  submit.innerHTML = "Update";
+  mood = "update";
+  temp = i;
+}
 //search.....................................................................................................
 
 let searchMode = "name";
@@ -105,16 +127,18 @@ function searchby(id) {
     searcher.placeholder = "search by jobs";
   }
   searcher.focus();
-  console.log(searchMode);
+  searcher.value='';
+  showdata()
 }
 
 function searchon(value) {
-    let table = "";
-    if (searchMode == "name") {
-    for (let i = 0; i < humanJob.length; i++) {
-      if (humanJob[i].fn.includs(value))
-        table += `
-        <tr>
+
+  let table = '';
+    if (searchMode === 'name') {
+      for (let i = 0; i < humanJob.length; i++) {
+        if (humanJob[i].fn.includes(value.toLowerCase())) {
+          table += `
+          <tr>
                             <th scope="row">${i}</th>
                             <td>${humanJob[i].fn}</td>
                             <td>${humanJob[i].ln}</td>
@@ -127,27 +151,32 @@ function searchon(value) {
                             <td><button class="btn1" onclick="deleteData(${i})">delete</button></td>
     
                         </tr>
-        `;
-    }
+          `;
+        }
+      }
     } else {
-    for (let i = 0; i < humanJob.length; i++) {
-        if (humanJob[i].job.includs(value))
-        table += `
-        <tr>
-                <th scope="row">${i}</th>
-                <td>${humanJob[i].fn}</td>
-                <td>${humanJob[i].ln}</td>
-                <td>${humanJob[i].job}</td>
-                <td>${humanJob[i].age}</td>
-                <td>${humanJob[i].gender}</td>
-                <td>${humanJob[i].from}</td>
-                <td>${humanJob[i].to}</td>
-                <td><button class="btn1" >update</button></td>
-                <td><button class="btn1" onclick="deleteData(${i})">delete</button></td>
-        </tr>
-    `;
-    }
+
+      for (let i = 0; i < humanJob.length; i++) {
+        if (humanJob[i].job.includes(value.toLowerCase())) {
+          table += `
+          <tr>
+                            <th scope="row">${i}</th>
+                            <td>${humanJob[i].fn}</td>
+                            <td>${humanJob[i].ln}</td>
+                            <td>${humanJob[i].job}</td>
+                            <td>${humanJob[i].age}</td>
+                            <td>${humanJob[i].gender}</td>
+                            <td>${humanJob[i].from}</td>
+                            <td>${humanJob[i].to}</td>
+                            <td><button class="btn1" >update</button></td>
+                            <td><button class="btn1" onclick="deleteData(${i})">delete</button></td>
+    
+                        </tr>
+          `;
+        }
+      }
+      
     }
     document.getElementById("tbody").innerHTML = table;
-}
+  }
 //clean data
