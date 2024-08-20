@@ -5,17 +5,13 @@
 }
 input{
     outline:none;
+    height: 30px;
 }
-.name{
+.name , .informatin , .date{
     display: flex;
     justify-content: space-between;
 }
-.informatin{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-}
+
 
 input::placeholder{
     text-align: center;
@@ -64,6 +60,10 @@ letter-spacing: 2px;
     width: 100%;
     text-align: center;
     font-weight: 600;
+}
+#gender , #age , #job{
+    border-radius: 10px;
+    height: 30px;
 }
 tr{
     text-align: center;
